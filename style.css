@@ -7,6 +7,11 @@ body {
   /* padding: 10px */
 }
 
+#sizeDisplay {
+  align-self: center;
+  font-size: 25px;
+}
+
 #title {
   font-size: 50px;
   font-weight: bold;
@@ -16,7 +21,7 @@ body {
 }
 
 #screen-card {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,25 +43,12 @@ body {
 }
 
 #screen {
-  height: 500px;
-  width: 500px;
-  /* border: 5px solid red; */
+  min-height: 500px;
+  min-width: 500px;
   padding: 10px;
   display: flex;
   flex-wrap: wrap;
-  /* background-color: aquamarine; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.square {
-  flex: 1 0 6%;
-  background: white;
-  /* border: solid 0.1px black; */
-}
-
-.square:hover {
-  background-color: rgb(0, 0, 0);
-  opacity: 40%;
 }
 
 .slider {
@@ -94,6 +86,7 @@ body {
   padding: 0;
   align-self: center;
   transition: all .2s ease-in-out; 
+  border: white solid 3px;
 }
 
 #color-picker:hover {
@@ -119,4 +112,15 @@ button:hover {
   background-color: steelblue;
   color: white;
   border: solid white 3px;
+}
+
+.square {
+  flex-grow: 1;
+  background: white;
+  /* border: solid 0.1px black; */
+}
+
+.square:hover {
+  background-color: rgb(0, 0, 0);
+  opacity: 40%;
 }
