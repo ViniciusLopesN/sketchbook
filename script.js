@@ -5,19 +5,20 @@ const colorPicker = document.getElementById('color-picker');
 const clearButton = document.getElementById('clearButton');
 const colorButton = document.getElementById('colorButton');
 const rainbowButton = document.getElementById('rainbowButton');
+const darkenButton = document.getElementById('darkenButton');
 
 
+const actionButton = document.querySelectorAll('.actionButton');
 
+for (let button of actionButton) {
+  button.addEventListener('click', () => {
+  actionButton.forEach(button => {
+    button.classList.remove('isActive');
+  });
+  button.classList.add('isActive');
+  });
+};
 
-colorButton.addEventListener('click', () => {
-  colorButton.classList.add('isActive');
-  rainbowButton.classList.remove('isActive');
-});
-
-rainbowButton.addEventListener('click', () => {
-  rainbowButton.classList.add('isActive');
-  colorButton.classList.remove('isActive');
-});
 
 
 let isPainting = false;
@@ -42,7 +43,7 @@ function printScreen() {
   const pixelInfo = document.querySelectorAll('.square');
 
   for (const info of pixelInfo) {
-    info.style.cssText = `flex-basis: ${ratio}%`;
+    info.style.flexBasis = ratio + "%";
     };
 };
 
@@ -73,19 +74,38 @@ function stopPainting(){
 }
 
 
+function string_between_strings(startStr, endStr, str) { //I imported this function to get a substring inside a string
+  pos = str.indexOf(startStr) + startStr.length;
+  return str.substring(pos, str.indexOf(endStr, pos));
+}
+
+
 function paint(event) {
    if (isPainting && event.target.classList.contains('square')) {
-    if (colorButton.classList.contains('isActive')){
+    if (colorButton.classList.contains('isActive')) {
+    event.target.style.filter = 'brightness(100%)';
     event.target.style.backgroundColor = color;
     }
+
+    else if (darkenButton.classList.contains('isActive')) {
+      if (event.target.style.filter === '' || event.target.style.filter == 'brightness(100%)') {
+        event.target.style.filter = 'brightness(100%)';
+      }
+      targetBright = Number(string_between_strings('(', '%', event.target.style.filter));
+      event.target.style.filter = event.target.style.filter.slice(0,11)+(targetBright-10)+'%)';
+      targetBright = Number(string_between_strings('(', '%', event.target.style.filter));
+    }
+
     else {
       let randomColor = Math.floor(Math.random()*16777215).toString(16);
       let rainbowColor = '#'+randomColor;
+      event.target.style.filter = 'brightness(100%)';
       event.target.style.backgroundColor = rainbowColor;
     }
   }
 }
 
-screen.addEventListener('mousedown',startPainting);
-screen.addEventListener('mousemove',paint);
-screen.addEventListener('mouseup',stopPainting);
+screen.addEventListener('mousedown', startPainting);
+screen.addEventListener('mouseout', paint);
+screen.addEventListener('mouseup', stopPainting);
+
