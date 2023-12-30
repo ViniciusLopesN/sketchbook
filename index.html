@@ -10,11 +10,11 @@
   <body>
     <div id="main-body">
       <div id="side-panel">
-        <input type="color" id="color-picker" value="#3a3a3a">
-        <button id="colorButton" class="actionButton">Color Mode</button>
-        <button id="rainbowButton" class="actionButton">Rainbow Mode</button>
-        <button id="darkenButton" class="actionButton">Darken</button>
-        <button id="clearButton">Clear</button>
+        <input type="color" id="color-picker" class="clickable" value="#3a3a3a">
+        <button id="colorButton" class="actionButton clickable">Color Mode</button>
+        <button id="rainbowButton" class="actionButton clickable">Rainbow Mode</button>
+        <button id="darkenButton" class="actionButton clickable">Darken</button>
+        <button id="clearButton" class="clickable">Clear</button>
         <div id="sizeDisplay"></div>
         <input type="range" min="1" max="64" value="2" class="slider" id="myRange">
       </div>
@@ -23,6 +23,10 @@
         <div id="screen">
         </div>
       </div>
+    </div>
+    <div id="footer">
+      <div>Copyright &#169 2023 Vinicius Lopes</div>
+      <a href="https://github.com/ViniciusLopesN" target="_blank" rel="noopener noreferrer"><img id="githubLogo" class="clickable" src="./images/github-mark-white.svg" alt="Github Cat logo" height="25px" width="auto"></a>
     </div>
   </body>
 </html>
